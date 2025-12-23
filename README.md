@@ -89,7 +89,7 @@ pip install opencv-python mediapipe matplotlib
 1. Update the video path in the script:
 
 ```python
-video_path = "C:\\Users\\User\\Downloads\\vd.mp4"
+video_path = ""
 ```
 
 2. Run the script:
