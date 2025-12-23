@@ -1,55 +1,124 @@
-# Stress Detection Project Documentation
+# Video-Based Stress Analysis System
 
-## Project Overview
+This project implements a **video-based stress analysis pipeline** using **OpenCV**, **MediaPipe**, and geometric computations.  
+It estimates an **overall stress level over time** by analyzing multiple behavioral and facial cues extracted from a video stream.
 
-This project aims to analyze human behavior in videos to detect stress levels based on various facial and body features. The stress detection is performed by analyzing factors such as blink frequency, eyebrow movement, emotions expressed, lip movements, hand movements, gaze direction, and face orientation.
 
-## Dependencies
+---
 
-- OpenCV: 4.5.3
-- Mediapipe: 0.8.7
-- Matplotlib: 3.4.3
-- Math (Standard Python Library)
+##  Features
 
-## Setup Instructions
+The system analyzes the following indicators:
 
-1. Clone the repository: `git clone https://github.com/your-username/your-repository.git`
-2. Install dependencies: `pip install -r requirements.txt`
-3. Run the script: `python stress_detection.py --video_path "path/to/your/video.mp4"`
+-  **Blink frequency**
+-  **Eyebrow movement**
+-  **Facial emotion proxies**
+-  **Lip movement**
+-  **Hand movement intensity**
+-  **Gaze direction**
+-  **Face orientation**
 
-## Usage
+All indicators are combined into a single **stress score**.
 
-The script analyzes stress factors in a given video and generates a graph depicting stress levels over time. You can customize the input video path using the `--video_path` argument.
+---
+
+##  Stress Score Formula
+
+The overall stress score is computed as a weighted sum:
+
+```
+Stress =
+0.15 × Blink
++ 0.15 × Eyebrow
++ 0.15 × Emotions
++ 0.15 × Lips
++ 0.15 × Hand Movement
++ 0.15 × Gaze Direction
++ 0.10 × Face Orientation
+```
+
+---
+
+##  Technologies Used
+
+- **Python 3**
+- **OpenCV** – video capture and processing
+- **MediaPipe**
+  - Face Detection
+  - Holistic Model (face, hands, pose)
+- **Matplotlib** – visualization
+- **Math** – geometric computations
+
+---
+
+##  Project Structure
+
+```
+.
+├── stress_analysis.py
+├── stress_graph.png
+└── README.md
+```
+
+---
+
+##  How the System Works
+
+1. Load a video file
+2. Read frames using OpenCV
+3. Detect face and body landmarks using MediaPipe
+4. Extract behavioral features per frame
+5. Compute individual stress indicators
+6. Calculate the final stress score
+7. Plot stress variation over time
+
+---
+
+##  Installation
+
+Install the required Python packages:
 
 ```bash
-python stress_detection.py --video_path "path/to/your/video.mp4"
-Feature Explanation
-Blink Detection
-The number of blinks per second is calculated to detect stress. Increased blink rates might indicate stress.
+pip install opencv-python mediapipe matplotlib
+```
 
-Eyebrow Movement
-The angle between eyebrow points is analyzed to understand eyebrow movements, which can contribute to stress detection.
+---
 
-Emotions
-Complex emotions analysis logic is applied based on eye distance and eyebrow distance.
+##  Usage
 
-Lip Movements
-Lip distance is calculated to assess stress levels related to facial expressions and lip movements.
+1. Update the video path in the script:
 
-Hand Movement
-The total Euclidean distance between consecutive hand landmarks is measured to detect stress from hand movements.
+```python
+video_path = "C:\\Users\\User\\Downloads\\vd.mp4"
+```
 
-Gaze Direction
-The ratio of horizontal to vertical eye movement is calculated to understand gaze direction, contributing to stress detection.
+2. Run the script:
 
-Face Orientation
-The roll angle of the face, representing head tilting sideways, is measured for stress analysis.
+```bash
+python stress_analysis.py
+```
 
-Customization
-You can customize the weights of each feature in the calculate_stress function in the script.
+---
 
-Results and Output
-The script generates a stress level graph over time, providing insights into the individual factors contributing to stress detection.
+## Output
 
-Contact Information
-For questions or feedback, contact: Eljaziamal@gmail.com
+- Stress values computed per frame
+- Line plot showing stress evolution over time
+- Graph saved as:
+
+```
+stress_graph.png
+```
+
+---
+
+##  Future Improvements
+
+- Deep learning–based emotion recognition
+- Improved blink detection
+- Stress normalization and scaling
+- Real-time webcam support
+- Temporal modeling (LSTM, smoothing filters)
+
+---
+
