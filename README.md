@@ -7,7 +7,6 @@ It estimates an **overall stress level over time** by analyzing multiple behavio
 ---
 
 ##  Features
-
 The system analyzes the following indicators:
 
 -  **Blink frequency**
